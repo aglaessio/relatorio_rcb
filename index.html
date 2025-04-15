@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório - Rio Preto Country Bulls 2024</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00b14f;
+            --primary-dark: #009e45;
+            --primary-light: rgba(0, 177, 79, 0.1);
+            --secondary: #2c3e50;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: white;
+            box-shadow: var(--card-shadow);
+            padding: 15px 0;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            height: 40px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        /* Filtros */
+        .filters {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary);
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 177, 79, 0.2);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 177, 79, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray);
+            color: var(--dark);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light-gray);
+            transform: translateY(-2px);
+        }
+
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 50%;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid var(--light-gray);
+            margin-bottom: 25px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+            color: var(--gray);
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+
+        .tab:hover {
+            color: var(--primary);
+        }
+
+        .tab.active {
+            color: var(--primary);
+        }
+
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Tabela */
+        .table-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow-x: auto;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        th {
+            background-color: var(--light);
+            font-weight: 600;
+            color: var(--secondary);
+            position: sticky;
+            top: 0;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background-color: var(--primary-light);
+        }
+
+        .editable {
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .editable:hover {
+            background-color: rgba(0, 177, 79, 0.15);
+        }
+
+        .editable-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--primary);
+            background-color: white;
+            z-index: 10;
+            display: none;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+        }
+
+        /* Resumo */
+        .summary {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .summary-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-item {
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .summary-item strong {
+            color: var(--secondary);
+        }
+
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            background-color: var(--light);
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .payment-method:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .payment-method i {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--gray);
+            font-size: 14px;
+            margin-top: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(3px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--dark);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 177, 79, 0.2);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .header-content {
+                padding: 0 15px;
+            }
+            
+            .filters {
+                padding: 20px;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                padding-bottom: 15px;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .tab {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+            
+            .summary {
+                padding: 20px;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+            
+            .modal-footer .btn {
+                width: 100%;
+            }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .payment-method {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .toast {
+                width: calc(100% - 40px);
+                left: 20px;
+                right: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <img src="https://ingressosweb.com.br/img/logo-dark.640276db.png" alt="Logo" class="logo">
+            <!-- <div class="user-menu">
+                <button class="btn btn-outline btn-icon" id="reports-btn" title="Relatórios">
+                    <i class="fas fa-chart-bar"></i>
+                </button>
+                <button class="btn btn-outline btn-icon" id="settings-btn" title="Configurações">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <div class="user-avatar" id="user-btn">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="filters">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="start-date"><i class="fas fa-calendar-alt"></i> Data inicial</label>
+                    <input type="date" id="start-date" value="">
+                </div>
+                <div class="filter-group">
+                    <label for="end-date"><i class="fas fa-calendar-alt"></i> Data Final</label>
+                    <input type="date" id="end-date" value="">
+                </div>
+                <div class="filter-group">
+                    <label for="sales-point"><i class="fas fa-store"></i> Ponto de Venda</label>
+                    <select id="sales-point">
+                        <option value="all">Todos</option>
+                        <option value="online">Online</option>
+                        <option value="physical">Físico</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="search-btn">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="sales">
+                <i class="fas fa-ticket-alt"></i> Vendas
+            </div>
+            <div class="tab" data-tab="tickets">
+                <i class="fas fa-list"></i> Ingressos
+            </div>
+            <div class="tab" data-tab="payments">
+                <i class="fas fa-credit-card"></i> Pagamentos
+            </div>
+            <div class="tab" data-tab="reports">
+                <i class="fas fa-file-alt"></i> Relatórios
+            </div>
+        </div>
+
+        <div class="tab-content active" id="sales-tab">
+            <div class="table-container">
+                <table id="sales-table">
+                    <thead>
+                        <tr>
+                            <th>Nome do ingresso</th>
+                            <th>Lote</th>
+                            <th>Sexo</th>
+                            <th>Qtde. Vendidos</th>
+                            <th>Valor Unitário</th>
+                            <th>Valor Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="editable" data-field="name">PISTA - PASSAPORTE PERMANENTE</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">834</td>
+                            <td class="editable" data-field="unit-value">R$ 180,00</td>
+                            <td>R$ 150.120,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">PISTA / ARQUIBANCADA - 09/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">205</td>
+                            <td class="editable" data-field="unit-value">R$ 20,00</td>
+                            <td>R$ 4.100,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">PISTA / ARQUIBANCADA - 10/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">112</td>
+                            <td class="editable" data-field="unit-value">R$ 70,00</td>
+                            <td>R$ 7.840,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">PISTA / ARQUIBANCADA - 11/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">2436</td>
+                            <td class="editable" data-field="unit-value">R$ 70,00</td>
+                            <td>R$ 170.520,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">PISTA / ARQUIBANCADA - 12/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">2282</td>
+                            <td class="editable" data-field="unit-value">R$ 70,00</td>
+                            <td>R$ 159.740,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">PISTA / ARQUIBANCADA - 13/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">147</td>
+                            <td class="editable" data-field="unit-value">R$ 60,00</td>
+                            <td>R$ 8.820,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">VIP BULLS - 09/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">293</td>
+                            <td class="editable" data-field="unit-value">R$ 80,00</td>
+                            <td>R$ 23.440,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">VIP BULLS - 10/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">27</td>
+                            <td class="editable" data-field="unit-value">R$ 180,00</td>
+                            <td>R$ 4.860,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">VIP BULLS - 10/07</td>
+                            <td class="editable" data-field="batch">2</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">32</td>
+                            <td class="editable" data-field="unit-value">R$ 210,00</td>
+                            <td>R$ 6.720,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">VIP BULLS - 10/07</td>
+                            <td class="editable" data-field="batch">3</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">181</td>
+                            <td class="editable" data-field="unit-value">R$ 250,00</td>
+                            <td>R$ 45.250,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="editable" data-field="name">VIP BULLS - 11/07</td>
+                            <td class="editable" data-field="batch">1</td>
+                            <td class="editable" data-field="gender">Unisex</td>
+                            <td class="editable" data-field="quantity">80</td>
+                            <td class="editable" data-field="unit-value">R$ 200,00</td>
+                            <td>R$ 16.000,00</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="btn btn-primary" id="add-row">
+                <i class="fas fa-plus"></i> Adicionar Ingresso
+            </button>
+
+            <div class="summary">
+                <div class="summary-title">
+                    <span><i class="fas fa-chart-pie"></i> Resumo Geral</span>
+                    <button class="btn btn-outline btn-icon" id="edit-summary" title="Editar Resumo">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                <div class="summary-item">
+                    <span>Qtde. total de Ingressos Vendidos:</span>
+                    <strong class="editable" data-field="total-tickets">6.629</strong>
+                </div>
+                <div class="summary-item">
+                    <span>Valor Arrecadado:</span>
+                    <strong class="editable" data-field="total-value">R$ 597.410,00</strong>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="payment-method">
+                        <i class="fas fa-money-bill-wave"></i> Dinheiro: <span class="editable" data-field="cash">R$ 226.670,00</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-mobile-alt"></i> Pix: <span class="editable" data-field="pix">R$ 234.450,00</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-credit-card"></i> Débito: <span class="editable" data-field="debit">R$ 0,00</span>
+                    </div>
+                    <div class="payment-method">
+                        <i class="fas fa-credit-card"></i> Crédito: <span class="editable" data-field="credit">R$ 136.290,00</span>
+                    </div>
+                </div>
+
+                <!-- <div style="margin-top: 20px;">
+                    <p><strong><i class="fas fa-info-circle"></i> Detalhamento Crédito:</strong></p>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <i class="fas fa-credit-card"></i> Crédito 1x: <span class="editable" data-field="credit-1x">R$ 359.240,00</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-credit-card"></i> Crédito 2x: <span class="editable" data-field="credit-2x">R$ 40.900,00</span>
+                        </div>
+                        <div class="payment-method">
+                            <i class="fas fa-credit-card"></i> Crédito 3x: <span class="editable" data-field="credit-3x">R$ 343.960,00</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- <div class="tab-content" id="tickets-tab">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tipo</th>
+                            <th>Lote</th>
+                            <th>Preço</th>
+                            <th>Vendidos</th>
+                            <th>Disponíveis</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>001</td>
+                            <td>Quarta-Feira</td>
+                            <td>1</td>
+                            <td>R$ 20,00</td>
+                            <td>124</td>
+                            <td>876</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>002</td>
+                            <td>Quinta-Feira</td>
+                            <td>1</td>
+                            <td>R$ 60,00</td>
+                            <td>106</td>
+                            <td>894</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>003</td>
+                            <td>Sexta-Feira</td>
+                            <td>1</td>
+                            <td>R$ 60,00</td>
+                            <td>529</td>
+                            <td>471</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>004</td>
+                            <td>Sabado</td>
+                            <td>1</td>
+                            <td>R$ 60,00</td>
+                            <td>797</td>
+                            <td>203</td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <button class="btn btn-primary" id="add-ticket-type">
+                <i class="fas fa-plus"></i> Adicionar Tipo de Ingresso
+            </button>
+        </div>
+
+        <div class="tab-content" id="payments-tab">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Data</th>
+                            <th>Método</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PAY-001</td>
+                            <td>03/05/2024</td>
+                            <td>Pix</td>
+                            <td>R$ 120,00</td>
+                            <td><span class="badge-success">Aprovado</span></td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PAY-002</td>
+                            <td>03/05/2024</td>
+                            <td>Crédito (2x)</td>
+                            <td>R$ 240,00</td>
+                            <td><span class="badge-success">Aprovado</span></td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PAY-003</td>
+                            <td>03/05/2024</td>
+                            <td>Débito</td>
+                            <td>R$ 60,00</td>
+                            <td><span class="badge-success">Aprovado</span></td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>PAY-004</td>
+                            <td>03/05/2024</td>
+                            <td>Dinheiro</td>
+                            <td>R$ 80,00</td>
+                            <td><span class="badge-warning">Pendente</span></td>
+                            <td>
+                                <button class="btn btn-outline btn-icon" title="Visualizar">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab-content" id="reports-tab">
+            <div class="summary">
+                <h3><i class="fas fa-file-alt"></i> Relatórios Disponíveis</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Vendas por Dia</h4>
+                        <p>Relatório detalhado de vendas por dia da semana com gráficos de comparação</p>
+                        <button class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-download"></i> Gerar Relatório
+                        </button>
+                    </div>
+                    <div class="card">
+                        <h4>Métodos de Pagamento</h4>
+                        <p>Distribuição dos métodos de pagamento utilizados com porcentagens</p>
+                        <button class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-download"></i> Gerar Relatório
+                        </button>
+                    </div>
+                    <div class="card">
+                        <h4>Ingressos Vendidos</h4>
+                        <p>Quantidade de ingressos vendidos por tipo e comparação entre lotes</p>
+                        <button class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-download"></i> Gerar Relatório
+                        </button>
+                    </div>
+                    <div class="card">
+                        <h4>Faturamento Diário</h4>
+                        <p>Evolução do faturamento ao longo dos dias com gráfico de tendência</p>
+                        <button class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-download"></i> Gerar Relatório
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="footer">
+        © 2025 Ingressos Web - Todos os Direitos Reservados
+    </div>
+
+    <!-- Modal para adicionar novo ingresso -->
+    <div class="modal" id="add-ticket-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-ticket-alt"></i> Adicionar Novo Ingresso</div>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="ticket-name">Nome do Ingresso</label>
+                <input type="text" id="ticket-name" placeholder="Ex: Camarote Vip Bulls Domingo">
+            </div>
+            <div class="form-group">
+                <label for="ticket-batch">Lote</label>
+                <input type="number" id="ticket-batch" placeholder="Ex: 1" value="1">
+            </div>
+            <div class="form-group">
+                <label for="ticket-gender">Sexo</label>
+                <select id="ticket-gender">
+                    <option value="Unisex">Unisex</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="ticket-quantity">Quantidade Vendida</label>
+                <input type="number" id="ticket-quantity" placeholder="Ex: 100">
+            </div>
+            <div class="form-group">
+                <label for="ticket-value">Valor Unitário</label>
+                <input type="text" id="ticket-value" placeholder="Ex: R$ 60,00">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Cancelar</button>
+                <button class="btn btn-primary" id="confirm-add-ticket">
+                    <i class="fas fa-check"></i> Adicionar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar resumo -->
+    <div class="modal" id="edit-summary-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-edit"></i> Editar Resumo</div>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="summary-tickets">Qtde. total de Ingressos Vendidos</label>
+                <input type="text" id="summary-tickets" value="5.831">
+            </div>
+            <div class="form-group">
+                <label for="summary-value">Valor Arrecadado</label>
+                <input type="text" id="summary-value" value="R$ 966.010,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-cash">Dinheiro</label>
+                <input type="text" id="summary-cash" value="R$ 34.020,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-pix">Pix</label>
+                <input type="text" id="summary-pix" value="R$ 58.660,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-debit">Débito</label>
+                <input type="text" id="summary-debit" value="R$ 1.080,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-credit">Crédito</label>
+                <input type="text" id="summary-credit" value="R$ 744.100,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-credit1">Crédito 1x</label>
+                <input type="text" id="summary-credit1" value="R$ 359.240,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-credit2">Crédito 2x</label>
+                <input type="text" id="summary-credit2" value="R$ 40.900,00">
+            </div>
+            <div class="form-group">
+                <label for="summary-credit3">Crédito 3x</label>
+                <input type="text" id="summary-credit3" value="R$ 343.960,00">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Cancelar</button>
+                <button class="btn btn-primary" id="confirm-edit-summary">
+                    <i class="fas fa-save"></i> Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar tipo de ingresso -->
+    <div class="modal" id="add-ticket-type-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-plus-circle"></i> Adicionar Tipo de Ingresso</div>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <label for="new-ticket-name">Nome do Ingresso</label>
+                <input type="text" id="new-ticket-name" placeholder="Ex: Pista Premium">
+            </div>
+            <div class="form-group">
+                <label for="new-ticket-batch">Lote</label>
+                <input type="number" id="new-ticket-batch" placeholder="Ex: 1" value="1">
+            </div>
+            <div class="form-group">
+                <label for="new-ticket-price">Preço</label>
+                <input type="text" id="new-ticket-price" placeholder="Ex: R$ 120,00">
+            </div>
+            <div class="form-group">
+                <label for="new-ticket-stock">Quantidade Disponível</label>
+                <input type="number" id="new-ticket-stock" placeholder="Ex: 500">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline close-modal">Cancelar</button>
+                <button class="btn btn-primary" id="confirm-add-ticket-type">
+                    <i class="fas fa-check"></i> Adicionar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Operação realizada com sucesso!</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tabs functionality
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and contents
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                    
+                    // Show toast when switching tabs
+                    showToast(`Aba ${tab.textContent.trim()} selecionada`);
+                });
+            });
+
+            // Modal functionality
+            const modals = document.querySelectorAll('.modal');
+            const openModal = (modalId) => {
+                document.getElementById(modalId).style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+            const closeModals = () => {
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                document.body.style.overflow = 'auto';
+            };
+
+            // Close modal when clicking X or cancel button
+            document.querySelectorAll('.close-modal').forEach(btn => {
+                btn.addEventListener('click', closeModals);
+            });
+
+            // Close modal when clicking outside modal content
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModals();
+                    }
+                });
+            });
+
+            // Open add ticket modal
+            document.getElementById('add-row').addEventListener('click', () => {
+                openModal('add-ticket-modal');
+            });
+
+            // Open add ticket type modal
+            document.getElementById('add-ticket-type').addEventListener('click', () => {
+                openModal('add-ticket-type-modal');
+            });
+
+            // Open edit summary modal
+            document.getElementById('edit-summary').addEventListener('click', () => {
+                openModal('edit-summary-modal');
+            });
+
+            // Add new ticket
+            document.getElementById('confirm-add-ticket').addEventListener('click', () => {
+                const name = document.getElementById('ticket-name').value;
+                const batch = document.getElementById('ticket-batch').value;
+                const gender = document.getElementById('ticket-gender').value;
+                const quantity = document.getElementById('ticket-quantity').value;
+                const value = document.getElementById('ticket-value').value;
+                
+                if (name && batch && gender && quantity) {
+                    const table = document.querySelector('#sales-table tbody');
+                    const newRow = document.createElement('tr');
+                    
+                    // Calculate total value if unit value is provided
+                    let totalValue = '-';
+                    if (value && value !== '-') {
+                        const unitValue = parseFloat(value.replace('R$', '').replace(',', '.').trim());
+                        totalValue = `R$ ${(unitValue * parseInt(quantity)).toFixed(2).replace('.', ',')}`;
+                    }
+                    
+                    newRow.innerHTML = `
+                        <td class="editable" data-field="name">${name}</td>
+                        <td class="editable" data-field="batch">${batch}</td>
+                        <td class="editable" data-field="gender">${gender}</td>
+                        <td class="editable" data-field="quantity">${quantity}</td>
+                        <td class="editable" data-field="unit-value">${value || '-'}</td>
+                        <td>${totalValue}</td>
+                        <td>
+                            <button class="btn btn-outline btn-icon delete-row" title="Excluir">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    `;
+                    
+                    table.appendChild(newRow);
+                    closeModals();
+                    initEditableCells();
+                    initDeleteButtons();
+                    
+                    // Clear form
+                    document.getElementById('ticket-name').value = '';
+                    document.getElementById('ticket-batch').value = '1';
+                    document.getElementById('ticket-gender').value = 'Unisex';
+                    document.getElementById('ticket-quantity').value = '';
+                    document.getElementById('ticket-value').value = '';
+                    
+                    showToast('Ingresso adicionado com sucesso!');
+                } else {
+                    showToast('Por favor, preencha todos os campos obrigatórios!', 'error');
+                }
+            });
+
+            // Add new ticket type
+            document.getElementById('confirm-add-ticket-type').addEventListener('click', () => {
+                const name = document.getElementById('new-ticket-name').value;
+                const batch = document.getElementById('new-ticket-batch').value;
+                const price = document.getElementById('new-ticket-price').value;
+                const stock = document.getElementById('new-ticket-stock').value;
+                
+                if (name && batch && price && stock) {
+                    const table = document.querySelector('#tickets-tab table tbody');
+                    const newRow = document.createElement('tr');
+                    
+                    newRow.innerHTML = `
+                        <td>${table.children.length + 1}</td>
+                        <td>${name}</td>
+                        <td>${batch}</td>
+                        <td>${price}</td>
+                        <td>0</td>
+                        <td>${stock}</td>
+                        <td>
+                            <button class="btn btn-outline btn-icon" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                    `;
+                    
+                    table.appendChild(newRow);
+                    closeModals();
+                    
+                    // Clear form
+                    document.getElementById('new-ticket-name').value = '';
+                    document.getElementById('new-ticket-batch').value = '1';
+                    document.getElementById('new-ticket-price').value = '';
+                    document.getElementById('new-ticket-stock').value = '';
+                    
+                    showToast('Tipo de ingresso adicionado com sucesso!');
+                } else {
+                    showToast('Por favor, preencha todos os campos!', 'error');
+                }
+            });
+
+            // Edit summary
+            document.getElementById('confirm-edit-summary').addEventListener('click', () => {
+                document.querySelector('[data-field="total-tickets"]').textContent = document.getElementById('summary-tickets').value;
+                document.querySelector('[data-field="total-value"]').textContent = document.getElementById('summary-value').value;
+                document.querySelector('[data-field="cash"]').textContent = document.getElementById('summary-cash').value;
+                document.querySelector('[data-field="pix"]').textContent = document.getElementById('summary-pix').value;
+                document.querySelector('[data-field="debit"]').textContent = document.getElementById('summary-debit').value;
+                document.querySelector('[data-field="credit"]').textContent = document.getElementById('summary-credit').value;
+                document.querySelector('[data-field="credit-1x"]').textContent = document.getElementById('summary-credit1').value;
+                document.querySelector('[data-field="credit-2x"]').textContent = document.getElementById('summary-credit2').value;
+                document.querySelector('[data-field="credit-3x"]').textContent = document.getElementById('summary-credit3').value;
+                
+                closeModals();
+                showToast('Resumo atualizado com sucesso!');
+            });
+
+            // Editable cells functionality
+            function initEditableCells() {
+                document.querySelectorAll('.editable').forEach(cell => {
+                    cell.addEventListener('click', function(e) {
+                        if (e.target.classList.contains('editable-input')) return;
+                        
+                        const cell = this;
+                        const originalValue = cell.textContent;
+                        const field = cell.getAttribute('data-field');
+                        
+                        // Create input element
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.value = originalValue;
+                        input.className = 'editable-input';
+                        
+                        // Position and style the input
+                        cell.style.position = 'relative';
+                        cell.appendChild(input);
+                        input.focus();
+                        
+                        // Handle input events
+                        input.addEventListener('blur', function() {
+                            const newValue = input.value;
+                            cell.textContent = newValue;
+                            
+                            // If quantity or unit value changed, recalculate total
+                            if (field === 'quantity' || field === 'unit-value') {
+                                const row = cell.closest('tr');
+                                const quantity = row.querySelector('[data-field="quantity"]').textContent;
+                                const unitValue = row.querySelector('[data-field="unit-value"]').textContent;
+                                
+                                if (quantity && unitValue && unitValue !== '-') {
+                                    const numericValue = parseFloat(unitValue.replace('R$', '').replace(',', '.').trim());
+                                    const numericQuantity = parseInt(quantity);
+                                    const totalValue = `R$ ${(numericValue * numericQuantity).toFixed(2).replace('.', ',')}`;
+                                    row.cells[5].textContent = totalValue;
+                                } else {
+                                    row.cells[5].textContent = '-';
+                                }
+                            }
+                            
+                            showToast('Valor atualizado com sucesso!');
+                        });
+                        
+                        input.addEventListener('keyup', function(e) {
+                            if (e.key === 'Enter') {
+                                input.blur();
+                            }
+                        });
+                    });
+                });
+            }
+
+            // Delete row functionality
+            function initDeleteButtons() {
+                document.querySelectorAll('.delete-row').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        if (confirm('Tem certeza que deseja excluir este ingresso?')) {
+                            this.closest('tr').remove();
+                            showToast('Ingresso removido com sucesso!');
+                        }
+                    });
+                });
+            }
+
+            // Toast notification
+            function showToast(message, type = 'success') {
+                const toast = document.getElementById('toast');
+                const toastMessage = document.getElementById('toast-message');
+                
+                toastMessage.textContent = message;
+                
+                // Change icon based on type
+                const icon = toast.querySelector('i');
+                if (type === 'error') {
+                    icon.className = 'fas fa-exclamation-circle';
+                    toast.style.backgroundColor = 'var(--danger)';
+                } else {
+                    icon.className = 'fas fa-check-circle';
+                    toast.style.backgroundColor = 'var(--primary)';
+                }
+                
+                toast.classList.add('show');
+                
+                // Hide after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Initialize
+            initEditableCells();
+            initDeleteButtons();
+
+            // Search button functionality
+            document.getElementById('search-btn').addEventListener('click', function() {
+                const startDate = document.getElementById('start-date').value;
+                const endDate = document.getElementById('end-date').value;
+                const salesPoint = document.getElementById('sales-point').value;
+                
+                showToast(`Filtros aplicados: ${startDate} até ${endDate}, Ponto: ${salesPoint}`);
+            });
+
+            // Report buttons functionality
+            document.querySelectorAll('#reports-tab .btn-primary').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const reportName = this.closest('.card').querySelector('h4').textContent;
+                    showToast(`Relatório "${reportName}" gerado com sucesso!`);
+                });
+            });
+
+            // User menu buttons
+            document.getElementById('reports-btn').addEventListener('click', () => {
+                // Switch to reports tab
+                document.querySelector('.tab[data-tab="reports"]').click();
+            });
+
+            document.getElementById('settings-btn').addEventListener('click', () => {
+                showToast('Configurações abertas', 'info');
+            });
+
+            document.getElementById('user-btn').addEventListener('click', () => {
+                showToast('Perfil do usuário', 'info');
+            });
+        });
+    </script>
+</body>
+</html>
